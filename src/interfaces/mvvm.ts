@@ -16,9 +16,7 @@ export namespace View {
 
     export interface Args extends Record<string, any> {}
 
-    export type ComponentProps<ViewState extends State> = {
-        useViewModel: ViewModel.Hook<ViewState>;
-    };
+    export type ComponentProps<ViewState extends State> = ViewState;
 
     export type Component<ViewState extends State> = React.FC<
         ComponentProps<ViewState>

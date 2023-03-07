@@ -3,10 +3,10 @@ import { InnerButtonFactory } from '../InnerButton';
 import { HomePageState } from './types';
 
 export const HomePageView: View.Component<HomePageState> = ({
-    useViewModel,
+    count,
+    handleClickCountButton,
+    innerButton,
 }) => {
-    const { count, handleClickCountButton, innerButton } = useViewModel();
-
     return (
         <div
             style={{

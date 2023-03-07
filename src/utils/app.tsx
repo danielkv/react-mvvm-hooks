@@ -1,5 +1,5 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
-import { useMemo } from 'react';
+import { createElement, useMemo } from 'react';
 import { View, ViewModel } from '../interfaces/mvvm';
 
 export namespace FactoryHelpers {
@@ -50,14 +50,14 @@ export namespace FactoryHelpers {
         viewModelFactory,
         ViewElement,
         args,
-    }: View.Reference<ViewState, ViewArgs>): React.ReactElement<
-        View.ComponentProps<ViewState>
-    > {
+    }: View.Reference<ViewState, ViewArgs>): React.ReactElement {
         const useViewModel = FactoryHelpers.useViewModel(
             viewModelFactory,
             args as ViewArgs,
         );
 
-        return <ViewElement useViewModel={useViewModel} />;
+        const state = useViewModel();
+
+        return createElement(ViewElement, state);
     }
 }
