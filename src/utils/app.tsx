@@ -29,37 +29,15 @@ export namespace FactoryHelpers {
 
     export function create<
         State extends View.State,
-        Args extends undefined = undefined,
-    >(
-        DefaultViewElement: View.Element<State>,
-        defaultViewModelFactory: ViewModel.Factory<State, Args>,
-        defaultArgs?: undefined,
-    ): View.Factory<State, Args>;
-    export function create<State extends View.State, Args extends View.Args>(
-        DefaultViewElement: View.Element<State>,
-        defaultViewModelFactory: ViewModel.Factory<State, Args>,
-        defaultArgs: Args,
-    ): View.Factory<State, Args>;
-    export function create<State extends View.State, Args extends View.Args>(
-        DefaultViewElement: View.Element<State>,
-        defaultViewModelFactory: ViewModel.Factory<State, Args>,
-        defaultArgs: Args,
-    ): View.Factory<State, Args> {
-        return ({
-            ViewElement: _ViewElement,
-            viewModelFactory: _viewModelFactory,
-            args: _args,
-        }) => {
-            const ViewElement = _ViewElement || DefaultViewElement;
-            const viewModelFactory =
-                _viewModelFactory || defaultViewModelFactory;
-            const args = _args || defaultArgs;
-
+        Args extends View.Args | undefined = undefined,
+    >(): View.Factory<State, Args> {
+        return ({ ViewElement, viewModelFactory, args }) => {
             return (
-                <ViewFactory<State, Args>
+                // @ts-expect-error
+                <ViewFactory
                     viewModelFactory={viewModelFactory}
-                    args={args as Args}
                     ViewElement={ViewElement}
+                    args={args}
                 />
             );
         };
@@ -69,9 +47,9 @@ export namespace FactoryHelpers {
         ViewState extends View.State,
         ViewArgs extends View.Args | undefined = undefined,
     >({
+        viewModelFactory,
         ViewElement,
         args,
-        viewModelFactory,
     }: View.Reference<ViewState, ViewArgs>): React.ReactElement<
         View.ComponentProps<ViewState>,
         any

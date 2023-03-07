@@ -1,4 +1,4 @@
-import { View } from '../../index';
+import { FactoryHelpers, View } from '../../index';
 import { InnerButtonFactory } from '../InnerButton';
 import { HomePageState } from './types';
 
@@ -21,7 +21,7 @@ export const HomePageView: View.Component<HomePageState> = ({
                 <button onClick={handleClickCountButton}>Count: {count}</button>
             </div>
             <div>
-                <InnerButtonFactory args={innerButton.args} />
+                <FactoryHelpers.ViewFactory {...innerButton} />
             </div>
         </div>
     );

@@ -1,8 +1,4 @@
 import { FactoryHelpers } from '../../';
-import { HomePageView } from './view';
-import { homePageViewModelFactory } from './viewModel';
+import { HomePageState } from './types';
 
-export const HomePageViewFactory = FactoryHelpers.create(
-    HomePageView,
-    homePageViewModelFactory,
-);
+export const HomePageViewFactory = FactoryHelpers.create<HomePageState>();

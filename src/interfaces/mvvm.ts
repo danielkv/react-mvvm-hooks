@@ -31,7 +31,7 @@ export namespace View {
     export type Factory<
         ViewState extends State,
         ViewArgs extends Args | undefined = undefined,
-    > = React.FC<Partial<Reference<ViewState, ViewArgs>>>;
+    > = React.FC<Reference<ViewState, ViewArgs>>;
 
     export interface ReferenceFactory<
         ViewState extends State,
@@ -44,9 +44,12 @@ export namespace View {
     export type Reference<
         ViewState extends State,
         ViewArgs extends Args | undefined = undefined,
-    > = ViewArgs extends undefined
-        ? ReferenceFactory<ViewState, ViewArgs>
-        : ReferenceFactory<ViewState, ViewArgs> & {
+    > = (ViewArgs extends undefined
+        ? {
+              args?: never;
+          }
+        : {
               args: ViewArgs;
-          };
+          }) &
+        ReferenceFactory<ViewState, ViewArgs>;
 }

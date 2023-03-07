@@ -1,5 +1,7 @@
 import { useCallback, useState } from 'react';
 import { ViewModel } from '../../interfaces/mvvm';
+import { InnerButtonView } from '../InnerButton/view';
+import { innerButtonViewModelFactory } from '../InnerButton/viewModel';
 import { HomePageState } from './types';
 
 export const homePageViewModelFactory: ViewModel.Factory<HomePageState> =
@@ -17,6 +19,10 @@ export const homePageViewModelFactory: ViewModel.Factory<HomePageState> =
         return {
             count,
             handleClickCountButton,
-            innerButton: { args: { initialCount: 10 } },
+            innerButton: {
+                args: { initialCount: 10 },
+                ViewElement: InnerButtonView,
+                viewModelFactory: innerButtonViewModelFactory,
+            },
         };
     };
