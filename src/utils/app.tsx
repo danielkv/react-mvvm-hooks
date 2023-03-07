@@ -51,8 +51,7 @@ export namespace FactoryHelpers {
         ViewElement,
         args,
     }: View.Reference<ViewState, ViewArgs>): React.ReactElement<
-        View.ComponentProps<ViewState>,
-        any
+        View.ComponentProps<ViewState>
     > {
         const useViewModel = FactoryHelpers.useViewModel(
             viewModelFactory,
