@@ -3,12 +3,10 @@
 import { CustomFn } from './app';
 
 export namespace ViewModel {
-    export type Hook<ViewState extends View.State> = () => ViewState;
-
-    export type Factory<
+    export type Hook<
         ViewState extends View.State,
         ViewArgs extends View.Args | undefined = undefined,
-    > = CustomFn<Hook<ViewState>, ViewArgs>;
+    > = CustomFn<ViewState, ViewArgs>;
 }
 
 export namespace View {
@@ -36,7 +34,7 @@ export namespace View {
         ViewArgs extends Args | undefined = undefined,
     > {
         ViewElement: View.Element<ViewState>;
-        viewModelFactory: ViewModel.Factory<ViewState, ViewArgs>;
+        useViewModel: ViewModel.Hook<ViewState, ViewArgs>;
     }
 
     export type Reference<

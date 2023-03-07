@@ -1,41 +1,16 @@
-/* eslint-disable @typescript-eslint/no-explicit-any */
-import { createElement, useMemo } from 'react';
-import { View, ViewModel } from '../interfaces/mvvm';
+import { createElement } from 'react';
+import { View } from '../interfaces/mvvm';
 
 export namespace FactoryHelpers {
-    export function useViewModel<
-        State extends Record<string, any>,
-        Args extends undefined = undefined,
-    >(
-        factory: ViewModel.Factory<State>,
-        args?: undefined,
-    ): ViewModel.Hook<State>;
-    export function useViewModel<
-        State extends Record<string, any>,
-        Args extends Record<string, any> | undefined,
-    >(
-        factory: ViewModel.Factory<State, Args>,
-        args: Args,
-    ): ViewModel.Hook<State>;
-    export function useViewModel<
-        State extends Record<string, any>,
-        Args extends Record<string, any> | undefined = undefined,
-    >(
-        factory: ViewModel.Factory<State, Args>,
-        args: Args | undefined,
-    ): ViewModel.Hook<State> {
-        return useMemo(() => factory(args as Record<string, any>), [factory]);
-    }
-
     export function create<
         State extends View.State,
         Args extends View.Args | undefined = undefined,
     >(): View.Factory<State, Args> {
-        return ({ ViewElement, viewModelFactory, args }) => {
+        return ({ ViewElement, useViewModel: viewModelFactory, args }) => {
             return (
                 // @ts-expect-error
                 <ViewFactory
-                    viewModelFactory={viewModelFactory}
+                    useViewModel={viewModelFactory}
                     ViewElement={ViewElement}
                     args={args}
                 />
@@ -47,16 +22,11 @@ export namespace FactoryHelpers {
         ViewState extends View.State,
         ViewArgs extends View.Args | undefined = undefined,
     >({
-        viewModelFactory,
+        useViewModel,
         ViewElement,
         args,
     }: View.Reference<ViewState, ViewArgs>): React.ReactElement {
-        const useViewModel = FactoryHelpers.useViewModel(
-            viewModelFactory,
-            args as ViewArgs,
-        );
-
-        const state = useViewModel();
+        const state = useViewModel(args || {});
 
         return createElement(ViewElement, state);
     }
