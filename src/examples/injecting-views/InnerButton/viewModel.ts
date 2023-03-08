@@ -1,8 +1,8 @@
 import { useCallback, useState } from 'react';
-import { ViewModel } from '../../interfaces/mvvm';
+import { ViewModel } from '../../../';
 import { InnerButtonArgs, InnerButtonState } from './types';
 
-export const innerButtonViewModel: ViewModel.Hook<
+export const useInnerButtonViewModel: ViewModel.Hook<
     InnerButtonState,
     InnerButtonArgs
 > = ({ initialCount }) => {

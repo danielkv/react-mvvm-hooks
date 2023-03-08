@@ -1,4 +1,4 @@
-import { View } from '../../';
+import { View } from '../../../';
 import { InnerButtonArgs, InnerButtonState } from '../InnerButton/types';
 
 export interface HomePageState extends View.State {

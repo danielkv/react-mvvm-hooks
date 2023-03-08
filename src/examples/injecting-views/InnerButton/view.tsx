@@ -1,4 +1,4 @@
-import { View } from '../../index';
+import { View } from '../../../';
 import { InnerButtonState } from './types';
 
 export const InnerButtonView: View.Component<InnerButtonState> = ({
