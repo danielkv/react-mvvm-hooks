@@ -1,5 +1,5 @@
 import { useCallback, useState } from 'react';
-import { ViewModel } from '../../../interfaces/mvvm';
+import { ViewModel } from '../../../src/';
 import { InnerButtonView } from '../InnerButton/view';
 import { useInnerButtonViewModel } from '../InnerButton/viewModel';
 import { HomePageState } from './types';

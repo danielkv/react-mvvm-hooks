@@ -1,4 +1,4 @@
-import { View } from '../../../';
+import { View } from '../../../src';
 
 export interface InnerButtonState extends View.State {
     count: number;

@@ -1,5 +1,5 @@
 import { useCallback, useState } from 'react';
-import { ViewModel } from '../../../interfaces/mvvm';
+import { ViewModel } from '../../../src/';
 
 import { CounterPageState } from './types';
 

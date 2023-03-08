@@ -1,11 +1,10 @@
-import { FactoryHelpers, View } from '../../../index';
-import { InnerButtonFactory } from '../InnerButton';
-import { HomePageState } from './types';
+import { View } from '../../../src/';
 
-export const HomePageView: View.Component<HomePageState> = ({
+import { CounterPageState } from './types';
+
+export const CounterPageView: View.Component<CounterPageState> = ({
     count,
     handleClickCountButton,
-    innerButton,
 }) => {
     return (
         <div
@@ -19,9 +18,6 @@ export const HomePageView: View.Component<HomePageState> = ({
         >
             <div>
                 <button onClick={handleClickCountButton}>Count: {count}</button>
-            </div>
-            <div>
-                <FactoryHelpers.ViewFactory {...innerButton} />
             </div>
         </div>
     );

@@ -1,5 +1,5 @@
 import { useCallback, useState } from 'react';
-import { ViewModel } from '../../../';
+import { ViewModel } from '../../../src/';
 import { InnerButtonArgs, InnerButtonState } from './types';
 
 export const useInnerButtonViewModel: ViewModel.Hook<

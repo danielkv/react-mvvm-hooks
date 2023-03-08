@@ -1,4 +1,4 @@
-import { FactoryHelpers } from '../../../';
+import { FactoryHelpers } from '../../../src';
 import { InnerButtonArgs, InnerButtonState } from './types';
 
 export const InnerButtonFactory = FactoryHelpers.create<
