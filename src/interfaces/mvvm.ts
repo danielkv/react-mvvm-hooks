@@ -2,6 +2,31 @@
 
 import { CustomFn } from './app';
 
+export namespace HookHelpers {
+    export type Hook<
+        State extends View.State,
+        Args extends View.Args | undefined = undefined,
+    > = CustomFn<State, Args>;
+
+    export type HookReference<
+        State extends View.State,
+        Args extends View.Args | undefined = undefined,
+    > = (Args extends undefined
+        ? {
+              args?: never;
+          }
+        : {
+              args: Args;
+          }) & { useHook: Hook<State, Args> };
+
+    export function useHook<
+        State extends View.State,
+        Args extends View.Args | undefined = undefined,
+    >({ useHook, args }: HookReference<State, Args>): State {
+        return useHook(args || {});
+    }
+}
+
 export namespace ViewModel {
     export type Hook<
         ViewState extends View.State,
