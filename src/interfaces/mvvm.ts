@@ -16,7 +16,7 @@ export namespace HookHelpers {
               args?: never;
           }
         : {
-              args?: Args;
+              args?: Partial<Args>;
           }) & { useHook: Hook<State, Args> };
 
     export function useHook<
@@ -60,7 +60,7 @@ export namespace View {
     > {
         ViewElement: View.Element<ViewState>;
         useViewModel: ViewModel.Hook<ViewState, ViewArgs>;
-        args?: ViewArgs;
+        args?: Partial<ViewArgs>;
     }
 
     export type Reference<
