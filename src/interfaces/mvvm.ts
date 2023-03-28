@@ -16,7 +16,7 @@ export namespace HookHelpers {
               args?: never;
           }
         : {
-              args: Args;
+              args?: Args;
           }) & { useHook: Hook<State, Args> };
 
     export function useHook<
@@ -60,6 +60,7 @@ export namespace View {
     > {
         ViewElement: View.Element<ViewState>;
         useViewModel: ViewModel.Hook<ViewState, ViewArgs>;
+        args?: ViewArgs;
     }
 
     export type Reference<
@@ -72,5 +73,5 @@ export namespace View {
         : {
               args: ViewArgs;
           }) &
-        ReferenceFactory<ViewState, ViewArgs>;
+        Omit<ReferenceFactory<ViewState, ViewArgs>, 'args'>;
 }
